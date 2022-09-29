@@ -58,11 +58,14 @@ function loadGuess(){
 function render(){
   console.log('in render ', guesses);
 
+  $('body').append(`<h2>${guesses.guess.length}</h2>`)
+
   $('#guessList').empty();
-  for(let guess of guesses){
+  for(let guess of guesses.guess){
     $('#guessList').append(`
     <li><h3>${guess.playerOne}</h3></li>
     <li><h3>${guess.playerTwo}</h3></li>
+    
     `)
   }
 

@@ -5,6 +5,17 @@ const PORT = 5000;
 
 let guessList = [];
 
+function getRandomNum(min, max){
+  let randomNum = Math.floor(Math.random() * (max - min) + min);
+  return randomNum;
+}
+
+
+let game = {
+  guess: guessList,
+  random: getRandomNum(1, 25)
+}
+
 // This must be added before GET & POST routes.
 app.use(bodyParser.urlencoded({extended:true}))
 
@@ -21,7 +32,7 @@ app.listen(PORT, () => {
 app.get('/game', (req, res) => {
   console.log('we want the numbers');
 
-  res.send(guessList);
+  res.send(game); //, getRandomNum(1, 25)
 });
 
 app.post('/game', (req, res) => {
@@ -30,11 +41,11 @@ app.post('/game', (req, res) => {
   let newGuessFrom = req.body;
 
   guessList.push(newGuessFrom);
+  // getRandomNum;
 
   res.sendStatus(201);
 
 });
 
-function getRandomNum(min, max){
-  return Math.floor(Math.random() * (max - min) + min)
-}
+
+
