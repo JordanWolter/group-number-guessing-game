@@ -12,7 +12,7 @@ You should generate a random number between 1 and 25 on the server. Add input fi
 
 X an input field for each of the Players to make a guess
 X a submit guesses button (submits all guesses at the same time)
-- total guesses made indicator (think of this as rounds in a game)
+X total guesses made indicator (think of this as rounds in a game)
 X details area for the history of guesses for each player 
 - (tell them if their last guess was too low or too high)
 - if a guess is correct PROMINENTLY Display which player won (make 'em FEEL it)
