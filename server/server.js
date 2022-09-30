@@ -5,6 +5,8 @@ const PORT = 5000;
 
 let guessList = [];
 let randomNum = 0;
+let i = 0;
+let n = 0;
 
 
 function getRandomNum(min, max){
@@ -12,14 +14,12 @@ function getRandomNum(min, max){
   return randomNum;
 }
 
-//let playerOneResult = playerOneTest(guessList, randomNum);
-//let playerTwoResult = playerTwoTest(newGuessFrom, randomNum);
 
 let game = {
   guess: guessList,
   random: getRandomNum(1, 25),
-  //playerOneGuess: playerOneResult,
-  //playerTwoGuess: playerTwoResult
+  resultOne: '',
+  resultTwo: ''
 }
 //    \              /  ______________    _____________
 //     \            /         |          |
@@ -30,42 +30,66 @@ let game = {
 
 
 function playerOneTest(test, random){
-  console.log('test', test, 'random', random)
-  if(test > random){
-   
-    console.log('player one guess is higher');
+  console.log('test', test)
 
-  }else if(test < random){
+  let playerOneNum = Number(test.guess[n].playerOne)
+
+  console.log('should be an num', playerOneNum)
+  if(playerOneNum > test.random){
+    console.log("player one guess is higher");
+
+    game.resultOne = 'higher';
+
+    console.log('should be higher', game.resultOne);
+
+  }else if(playerOneNum < test.random){
     console.log('player one guess is lower');
 
-  } else if(test === random){
+    game.resultOne = 'lower';
+
+    console.log('should be lower', game.resultOne);
+
+  } else if(playerOneNum === test.random){
     console.log('player one wins');
 
-  }
+    game.resultOne = 'win';
 
+    console.log('should be win', game.resultOne);
+
+  }
+  n++
 }
 
-function playerTwoTest(test, random){
-  console.log('test', test, 'random', random)
-  if(test > random){
-    console.log('player two guess is higher');
-    $('#guessList').append(`
-    <li><h3>player two guess is higher</h3></li>
-    
-    `)
+function playerTwoTest(test){
+  console.log('test', test,)
 
-  }else if(test < random){
+  let playerTwoNum = parseInt(test.guess[i].playerTwo)
+
+  console.log('should be an int', playerTwoNum)
+  
+  if(playerTwoNum > test.random){
+    console.log('player two guess is higher');
+
+    game.resultTwo = 'higher';
+
+    console.log('should be higher', game.resultTwo);
+
+  }else if(playerTwoNum < test.random){
     console.log('player two guess is lower');
-    $('#guessList').append(`
-    <li><h3>player two guess is lower</h3></li>
-    `)
-  }else if(test === random){
+
+    game.resultTwo = 'lower';
+
+    console.log('should be lower', game.resultTwo);
+
+  }else if(playerTwoNum === test.random){
     console.log('player two wins');
-    $('#guessList').append(`
-    <li><h3>player two wins</h3></li>
-    
-    `)
+
+    game.resultTwo = 'win';
+
+    console.log('should be win', game.resultTwo);
+
   }
+  i++;
 }
 
 
@@ -87,6 +111,8 @@ app.listen(PORT, () => {
 
 app.get('/game', (req, res) => {
   console.log('we want the numbers');
+  playerOneTest(game);
+  playerTwoTest(game);
   
 
 
