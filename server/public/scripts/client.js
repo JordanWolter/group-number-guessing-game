@@ -23,8 +23,6 @@ function playerGuesses(evt){
     playerTwo: $('#playerTwoInput').val()
   };
 
-  
-
   $.ajax({
     url:'/game',
     method: 'POST',
@@ -50,12 +48,9 @@ function playerGuesses(evt){
 function loadGuess(){
   console.log('in loadGuess');
 
-  
-
   $.ajax({
     url: '/game',
     method: 'GET',
-    //data: randomNum
   })
   .then((response) => {
     console.log('GET /game', response);
@@ -77,7 +72,6 @@ function render(){
 
   $('#rounds').empty()
   $('#rounds').append(`<h2>Total Rounds: ${guesses.guess.length}</h2>`);
-  
 
   $('#guessList').empty();
   let i = 0;
@@ -89,7 +83,6 @@ function render(){
     <p>Player One's guess is: ${index.resultOne}</p>
     <li><h3>Player Two's Guess: ${index.guess[i].playerTwo}</h3></li>
     <p>Player Two's guess is: ${index.resultTwo}</p>
-    
     `)
     i++
   }
