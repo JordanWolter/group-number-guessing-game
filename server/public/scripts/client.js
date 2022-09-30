@@ -73,31 +73,25 @@ function loadGuess(){
 function render(){
   console.log('in render ', guesses);
 
-  console.log('this is getting confusing', history);
+  console.log('this is the history', history);
 
   $('#rounds').empty()
   $('#rounds').append(`<h2>Total Rounds: ${guesses.guess.length}</h2>`);
   
 
   $('#guessList').empty();
-  for(let guess of guesses.guess){
-    console.log(guesses);
-    $('#guessList').append(`
-    <li><h3>Player One's Guess: ${guess.playerOne}</h3></li>
-    <p id='playerOne'></p>
-    <li><h3>Player Two's Guess: ${guess.playerTwo}</h3></li>
-    <p id='playerTwo'></p>
-    
-    `)
-  }
+  let i = 0;
   for(let index of history){
-    $('#playerOne').append(`
-    Player One's guess is: ${index.guess[i]resultOne}
+    console.log(guesses);
+    console.log(index.guess[0].playerOne);
+    $('#guessList').append(`
+    <li><h3>Player One's Guess: ${index.guess[i].playerOne}</h3></li>
+    <p>Player One's guess is: ${index.resultOne}</p>
+    <li><h3>Player Two's Guess: ${index.guess[i].playerTwo}</h3></li>
+    <p>Player Two's guess is: ${index.resultTwo}</p>
     
     `)
-    $('#playerTwo').append(`
-    Player Two's guess is: ${index.resultTwo}
-    `)
+    i++
   }
   
 
@@ -115,7 +109,9 @@ function resetButton(){
   $('#guessList').empty();
   $('#rounds').empty();
   history = [];
+  guesses = [];
   console.log('should be empty', history);
+
 }
 
 
